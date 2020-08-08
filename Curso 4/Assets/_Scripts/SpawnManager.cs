@@ -10,13 +10,19 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         _collider = GetComponent<Collider>();
-        CreateEnemy();
-        
+
+        this.CreateEnemyWave(3);
+
     }
     
     void CreateEnemy(){        
         Vector3 radius =  _collider.bounds.max;
         Vector3 position = new Vector3(Random.Range(0, radius.x), 0f, Random.Range(0, radius.z));
         Instantiate(enemy, position, enemy.transform.rotation);
+    }
+
+
+    void CreateEnemyWave(int enemy_number){
+        for (int i = 0; i < enemy_number; i++) this.CreateEnemy();
     }
 }
